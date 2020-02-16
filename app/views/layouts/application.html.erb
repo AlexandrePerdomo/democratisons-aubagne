@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DemocratisonsAubagne</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+  </head>
+
+  <body>
+    <%= render "navbar" %>
+    <div class="full-height">
+      <%= yield %>
+    </div>
+    <%= javascript_pack_tag 'application' %>
+  </body>
+</html>
