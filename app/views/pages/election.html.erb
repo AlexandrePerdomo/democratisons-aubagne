@@ -1,6 +1,25 @@
 <div class="container">
   <div class="row">
-  	<h1>Elections municipales 2020</h1>  	
+    <div class="col-12">
+      <h1>Elections municipales 2020</h1>
+
+      <p>Démocratisons Aubagne a centralisé l'ensemble des informations sur les différentes listes électorales. Vous pourrez donc retrouver simplement pour chaque liste son site WEB, ses coordonnées de contact, les soutiens de partis politiques ainsi qu'une description fournie par la liste. Les listes sont présentées dans l'ordre alphabétique</p>
+    </div>
+
+    <% if @lists.nil? %>
+      <p>Une erreur est survenue, merci de contacter un administrateur : <a href="mailto:contact@democrations-aubagne.fr"></a>contact@democrations-aubagne.fr</p>
+    <% else %>
+      <div class="col-12">
+        <% @lists.each do |list| %>
+          <h2>
+            <a href="/election-municipale-2020/<%= list['name'].downcase.gsub(" ", "-") %>">
+              <%= list['name'] %>
+            </a>
+          </h2>
+          <p>Liste menée par <%= list['first_candidate'] %></p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
