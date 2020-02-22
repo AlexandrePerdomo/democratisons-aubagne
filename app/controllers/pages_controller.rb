@@ -5,8 +5,12 @@ class PagesController < ApplicationController
   def election;
     url = default_url
     route = url + "/lists"
-    response = RestClient.get(route, headers={})
-    if response.code == 200
+    begin
+      response = RestClient.get(route, headers={})
+    rescue RestClient::ExceptionWithResponse => e
+      e.response
+    end
+    if response
       @lists = JSON.parse response
     else 
       @lists = nil
@@ -16,8 +20,12 @@ class PagesController < ApplicationController
   def list
     url = default_url
     route = url + "/lists/#{params[:name]}"
-    response = RestClient.get(route, headers={})
-    if response.code == 200
+    begin
+      response = RestClient.get(route, headers={})
+    rescue RestClient::ExceptionWithResponse => e
+      e.response
+    end
+    if response
       @list = JSON.parse response
     else 
       @list = nil
