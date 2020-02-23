@@ -2,13 +2,20 @@
   <div class="row">
     <div class="col-12">
       <% if @list.nil? %>
-		<p>Une erreur est survenue</p>
+		    <p>Une erreur est survenue</p>
       <% else %>
       	<h1><%= @list["name"] %></h1>
+        <br>
+        <% if @list["description"].blank? %>
+          <p>Cette liste n'a pas encore répondu à notre sollicitation et n'a pas fourni de description à relayer.</p>
+        <% else %>
+          <%= sanitize(@list["description"]) %>
+        <% end %>
 
-      	<p>Site Web : <%= @list["website"] %></p>
-      	<p>Téléphone : <%= @list["phone"] %></p>
-      	<p>Mail de contact : <%= @list["email"] %></p>
+        <h2>Contact</h2>
+        <p style="margin:0">Site Web : <%= @list["website"] %></p>
+        <p style="margin:0">Téléphone : <%= @list["phone"] %></p>
+        <p style="margin:0">Mail de contact : <%= @list["email"] %></p>
       <% end %>
     </div>
   </div>

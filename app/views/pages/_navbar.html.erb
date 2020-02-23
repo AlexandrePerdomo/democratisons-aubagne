@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-md navbar-light">
   <a class="navbar-brand" href="/">
   	<%= image_tag('/images/logo-horizontal.jpg') %>
   </a>
@@ -13,6 +13,9 @@
       </li>
       <li class="nav-item <%= active_class(:election)%>">
         <a class="nav-link" href="/election-municipale-2020">Municipales 2020 <%= active_span(:election)%></a>
+      </li>
+      <li class="nav-item <%= active_class(:cgu)%>">
+        <a class="nav-link" href="/mentions-légales">Mentions légales <%= active_span(:cgu)%></a>
       </li>
 <!--       <li class="nav-item <%= active_class(:doleances)%>">
         <a class="nav-link" href="/doléances">Doléances <%= active_span(:doleances)%></a>

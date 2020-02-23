@@ -3,22 +3,31 @@
     <div class="col-12">
       <h1>Elections municipales 2020</h1>
 
-      <p>Démocratisons Aubagne a centralisé l'ensemble des informations sur les différentes listes électorales. Vous pourrez donc retrouver simplement pour chaque liste son site WEB, ses coordonnées de contact, les soutiens de partis politiques ainsi qu'une description fournie par la liste. Les listes sont présentées dans l'ordre alphabétique</p>
+      <p>Démocratisons Aubagne a centralisé l'ensemble des informations sur les différentes listes électorales. Vous pourrez donc retrouver simplement pour chaque liste son site WEB, ses coordonnées de contact, les partis politiques soutenant la liste ainsi qu'une description. Les listes sont présentées dans l'ordre alphabétique.</p>
     </div>
 
     <% if @lists.nil? %>
       <p>Une erreur est survenue, merci de contacter un administrateur : <a href="mailto:contact@democrations-aubagne.fr"></a>contact@democrations-aubagne.fr</p>
     <% else %>
-      <div class="col-12">
-        <% @lists.each do |list| %>
+      <% @lists.each do |list| %>
+        <div class="col-12 col-md-6" style="margin-bottom:2rem;">
           <h2>
             <a href="/election-municipale-2020/<%= list['name'].downcase.gsub(" ", "-") %>">
               <%= list['name'] %>
             </a>
           </h2>
-          <p>Liste menée par <%= list['first_candidate'] %></p>
-        <% end %>
-      </div>
+          <p>Liste menée par <strong><%= list['first_candidate'] %></strong></p>
+          <% if list['political_support'].length == 0 %>
+            <p style="min-height: 40px;margin-bottom:0">Pas de soutien politique déclaré</p>
+          <% else %>
+            <p style="margin:0">Soutien politique :
+              <% list['political_support'].each do |political| %>
+                <%= image_tag("/images/#{political}.svg", class: "political_support") %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

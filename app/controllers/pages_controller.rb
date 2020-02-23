@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
   def list
     url = default_url
-    route = url + "/lists/#{params[:name]}"
+    route = url + "/lists/#{ERB::Util.url_encode(params[:name])}"
     begin
       response = RestClient.get(route, headers={})
     rescue RestClient::ExceptionWithResponse => e
