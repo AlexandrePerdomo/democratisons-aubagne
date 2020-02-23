@@ -13,9 +13,11 @@
         <% end %>
 
         <h2>Contact</h2>
-        <p style="margin:0">Site Web : <%= @list["website"] %></p>
+        <p style="margin:0">Site Web : <a href="<%= @list['website'] %>"><%= @list["website"] %></a></p>
         <p style="margin:0">Téléphone : <%= @list["phone"] %></p>
-        <p style="margin:0">Mail de contact : <%= @list["email"] %></p>
+        <p style="margin:0">Mail de contact : <a href="<%= @list['email'] %>"><%= @list["email"] %></a></p>
+
+        <br><br>
       <% end %>
     </div>
   </div>

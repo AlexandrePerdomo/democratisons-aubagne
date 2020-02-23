@@ -39,8 +39,6 @@ class PagesController < ApplicationController
   private
 
   def default_url
-  	return "localhost:3000/api/v1" if Rails.env == "development"
-
-  	"https://democracy-api-staging.herokuapp.com/api/v1"
+    ENV['API_URL'].presence || "localhost:3000/api/v1"
   end
 end
