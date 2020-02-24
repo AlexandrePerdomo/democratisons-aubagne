@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 list-description">
       <% if @list.nil? %>
 		    <p>Une erreur est survenue</p>
       <% else %>
@@ -17,7 +17,8 @@
         <p style="margin:0">Téléphone : <%= @list["phone"] %></p>
         <p style="margin:0">Mail de contact : <a href="<%= @list['email'] %>"><%= @list["email"] %></a></p>
 
-        <br><br>
+        <br>
+        <p style="font-size: 12px;"><em>Contenu mis à jour le <%= @list["updated_at"] %></em></p>
       <% end %>
     </div>
   </div>
