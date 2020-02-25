@@ -13,9 +13,9 @@
         <% end %>
 
         <h2>Contact</h2>
-        <p style="margin:0">Site Web : <a href="<%= @list['website'] %>"><%= @list["website"] %></a></p>
+        <p style="margin:0">Site Web : <a href="<%= @list['website'] %>" target="blank"><%= @list["website"] %></a></p>
         <p style="margin:0">Téléphone : <%= @list["phone"] %></p>
-        <p style="margin:0">Mail de contact : <a href="<%= @list['email'] %>"><%= @list["email"] %></a></p>
+        <p style="margin:0">Mail de contact : <a href="mailto:<%= @list['email'] %>"><%= @list["email"] %></a></p>
 
         <br>
         <p style="font-size: 12px;"><em>Contenu mis à jour le <%= @list["updated_at"] %></em></p>
