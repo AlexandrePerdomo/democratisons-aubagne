@@ -22,7 +22,7 @@
           <% else %>
             <p style="margin:0">Soutien politique :
               <% list['political_support'].each do |political| %>
-                <% if political != "ENSEMBLE" %>
+                <% if ["ENSEMBLE", "UDI"].exclude? political %>
                   <%= image_tag("/images/#{political}.svg", class: "political_support") %>
                 <% else %>
                   <%= image_tag("/images/#{political}.png", class: "political_support") %>
