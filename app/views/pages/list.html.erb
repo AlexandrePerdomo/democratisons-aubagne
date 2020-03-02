@@ -11,6 +11,17 @@
         <% else %>
           <%= sanitize(@list["description"]) %>
         <% end %>
+        <% if @list["candidates"].length > 40 %>
+          <h2>Candidats</h2>
+          <div class="row">
+            <% @list["candidates"].each do |candidate| %>
+              <% gender = candidate["gender"] == "man" ? "M." : "Mme" %>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <p><%= "#{candidate["position"]}. #{gender} #{candidate["first_name"]} #{candidate["last_name"]}" %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
 
         <h2>Contact</h2>
         <p style="margin:0">Site Web : <a href="<%= @list['website'] %>" target="blank"><%= @list["website"] %></a></p>
