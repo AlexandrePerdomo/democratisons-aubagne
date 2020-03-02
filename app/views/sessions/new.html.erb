@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center;">Connexion</h1>
+    </div>
+    <div class="col-8 offset-2 center-block">
+      <%= simple_form_for @user, url: sessions_path, class: "form-group" do |f|  %>
+        <%= f.input :email, required: true, placeholder:"Email",
+                    label: false, input_html: { class: "form-control", value: @user.try(:email) } %>
+        <%= f.input :password, required: true, label: false, placeholder: "Mot de passe", input_html: { class: "form-control"} %>
+        <%= f.button :submit, "Se connecter", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;" %>
+      <% end %>
+    </div>
+  </div>
+</div>

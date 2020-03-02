@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Consultations</h1>
+    </div>
+    <div class="col-12">
+      <h2>Le principe</h2>
+      <p>
+      	Nous souhaitons mettre en collaboration avec la mairie d'Aubagne un système de consultation citoyenne. Chacune de ces consultations réunirait l'ensemble des propositions parmi lesquelles les citoyens seraient appelés à voter.
+      </p>
+      <p>
+      	Mais plutôt qu'un choix unique, chaque Aubagnais·e·s devra s'exprimer sur l'ensemble des propositions en lui attribuant une mention : c'est le principe du <a href="https://mieuxvoter.fr" target="blank">jugement majoritaire</a>. Les mentions possibles sont les suivantes : Très bien, Bien, Assez bien, Passable, Insuffisant, A Rejeter. Une fois l'ensemble des mentions attribuées, le résultat de la consultation est obtenu en regardant quelle est la mention majoritaire. 
+      </p>
+    </div>
+    <div class="col-12">
+      <h2>Les consultations en cours</h2>
+      <% if @consultations.blank? || @consultations.nil? %>
+        <p>Il n'y a pas de consultation en cours.</p>
+      <% else %>
+        <% @consultations.each do |consultation| %>
+          <div class="d-flex justify-content-between" style="margin-top: 15px;">
+            <p><b><a href="/consultations/<%= consultation["title"].downcase.gsub(" ", "-") %>" style="font-size: 20px"><%= consultation["title"] %></a></b> (du <%= consultation["start_date"] %> au <%= consultation["end_date"] %>)</p>
+            <p><%= consultation["participants"] %> <%= consultation["participants"] > 1 ? "participants" : "participant" %> </p>            
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

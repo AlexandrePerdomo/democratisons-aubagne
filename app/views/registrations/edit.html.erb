@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center;">Modifier mon compte</h1>
+    </div>
+    <div class="col-8 offset-2 center-block">
+      <%= simple_form_for @user, url: registration_path, class: "form-group" do |f|  %>
+        <%= f.input :first_name, required: true, autofocus: true, label: false, 
+                    placeholder: "Prénom", input_html: { class: "form-control", value: @user.try(:first_name)} %>
+        <%= f.input :last_name, required: true, label: false, placeholder:"Nom",
+                    input_html: { class: "form-control", value: @user.try(:last_name) } %>
+        <%= f.input :email, required: true, placeholder:"Email",
+                    label: false, input_html: { class: "form-control", value: @user.try(:email) } %>
+        <%= f.input :password, label: false, placeholder: "Entrez ici un nouveau mot de passe si vous souhaitez le modifier", input_html: { class: "form-control"} %>
+        <%= f.button :submit, "Modifier mon compte", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;" %>
+      <% end %>
+    </div>
+  </div>
+</div>

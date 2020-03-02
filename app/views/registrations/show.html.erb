@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Mon compte</h1>
+    </div>
+    <div class="col-12">
+      <p>Prénom : <%= @user.first_name %></p>
+      <p>Nom : <%= @user.last_name %></p>
+      <p>Email : <%= @user.email %></p>
+    </div>
+    <div class="col-12">
+      <!-- <a href="/modifier-mon-compte">Modifier mon compte</a> -->
+      <br>
+      <a href="/deconnexion">Déconnexion</a>
+      <br><br><br>
+      <%= link_to "Supprimer mon compte", supprimer_mon_compte_path, data: {confirm: 'Êtes vous sur ? '} %>
+    </div>
+  </div>
+</div>

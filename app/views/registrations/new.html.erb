@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center;">Inscription</h1>
+    </div>
+    <div class="col-8 offset-2 center-block">
+      <%= simple_form_for @user, url: registrations_path, class: "form-group" do |f|  %>
+        <%= f.input :first_name, required: true, autofocus: true, label: false, 
+                    placeholder: "Prénom", input_html: { class: "form-control", value: @user.try(:first_name)} %>
+        <%= f.input :last_name, required: true, label: false, placeholder:"Nom",
+                    input_html: { class: "form-control", value: @user.try(:last_name) } %>
+        <%= f.input :email, required: true, placeholder:"Email",
+                    label: false, input_html: { class: "form-control", value: @user.try(:email) } %>
+        <%= f.input :password, required: true, label: false, placeholder: "Mot de passe", input_html: { class: "form-control"} %>
+        <%= f.check_box :accepted_condition, required: true, input_html: { class: "form-check"} %>
+        <%= f.label :accepted_condition, "J'accepte les CGU" %>
+        <%= f.hidden_field :number1, value: @number1 %>
+        <%= f.hidden_field :number2, value: @number2 %>
+        <%= f.input :total, label: false, placeholder: "Résultat du calcul : #{@number1} + #{@number2}", input_html: { class: "form-control"} %>
+        <%= f.button :submit, "Créer mon compte", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;" %>
+      <% end %>
+    </div>
+  </div>
+</div>

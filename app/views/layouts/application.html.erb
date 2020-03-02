@@ -10,10 +10,12 @@
   </head>
 
   <body>
-    <%= render "navbar" %>
+    <%= render "pages/navbar" %>
+    <%= render "pages/flash" %>
     <div class="full-height">
       <%= yield %>
     </div>
+    <%= render "pages/footer" %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>

@@ -1,6 +1,6 @@
-const { environment } = require('@rails/webpacker');
+const { environment } = require("@rails/webpacker");
 
-['css', 'moduleCss'].forEach(loaderName => {
+["css", "moduleCss"].forEach(loaderName => {
   const loader = environment.loaders.get(loaderName);
 
   loader.test = /\.(p?css)$/i;

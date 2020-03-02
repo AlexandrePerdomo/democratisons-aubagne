@@ -8,23 +8,41 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <%= active_class(:home)%>">
-        <a class="nav-link" href="/">Accueil <%= active_span(:home)%></a>
+      <li class="nav-item <%= active_class(:pages, :home)%>">
+        <a class="nav-link" href="/">Accueil <%= active_span(:pages, :home)%></a>
       </li>
-      <li class="nav-item <%= active_class(:election)%>">
-        <a class="nav-link" href="/election-municipale-2020">Municipales 2020 <%= active_span(:election)%></a>
+      <li class="nav-item <%= active_class(:pages, :election)%>">
+        <a class="nav-link" href="/election-municipale-2020">Municipales 2020 <%= active_span(:pages, :election)%></a>
       </li>
-      <li class="nav-item <%= active_class(:cgu)%>">
-        <a class="nav-link" href="/mentions-légales">Mentions légales <%= active_span(:cgu)%></a>
+      <li class="nav-item <%= active_class(:consultations, :index)%>">
+        <a class="nav-link" href="/consultations">Consultations <%= active_span(:consultations, :index)%></a>
       </li>
-<!--       <li class="nav-item <%= active_class(:doleances)%>">
-        <a class="nav-link" href="/doléances">Doléances <%= active_span(:doleances)%></a>
-      </li> -->
+      <li class="nav-item <%= active_class(:pages, :cgu)%>">
+        <a class="nav-link" href="/mentions-legales">Mentions légales <%= active_span(:pages, :cgu)%></a>
+      </li>
     </ul>
-<!--     <ul class="navbar-nav">
-      <li class="nav-item <%= active_class(:connexion)%>">
-        <a class="nav-link" href="/sign_in">Connexion <%= active_span(:connexion)%></a>
-      </li>
-    </ul> -->
+    <% if session[:token] && !session[:token].nil? %>
+      <ul class="navbar-nav">
+        <li class="nav-item <%= active_class(:registrations, :show)%>">
+          <a class="nav-link" href="/mon-compte">Mon compte <%= active_span(:registrations, :show)%></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/deconnexion">Déconnexion</a>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav">
+        <li class="nav-item <%= active_class(:sessions, :new)%>">
+          <a class="nav-link" href="/connexion">Connexion <%= active_span(:sessions, :new)%></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item <%= active_class(:registrations, :new)%>">
+          <a class="nav-link" href="/inscription">Inscription <%= active_span(:registrations, :new)%></a>
+        </li>
+      </ul>
+    <% end %>
   </div>
 </nav>
