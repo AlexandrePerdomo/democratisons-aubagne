@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url
-    ENV['API_URL'].presence || "localhost:3000/api/v1"
+    ENV['API_URL'].presence || "localhost:3000"
   end
 end

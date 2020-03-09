@@ -1,8 +1,7 @@
 class ElectionsController < ApplicationController
 
   def index
-    url = default_url
-    route = url + "/lists"
+    route = default_url + "/api/v1/lists"
     begin
       response = RestClient.get(route, headers={})
     rescue RestClient::ExceptionWithResponse => e
@@ -16,8 +15,7 @@ class ElectionsController < ApplicationController
   end
 
   def show
-    url = default_url
-    route = url + "/lists/#{ERB::Util.url_encode(params[:name])}"
+    route = default_url + "/api/v1/lists/#{ERB::Util.url_encode(params[:name])}"
     begin
       response = RestClient.get(route, headers={})
     rescue RestClient::ExceptionWithResponse => e

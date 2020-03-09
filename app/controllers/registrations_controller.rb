@@ -105,8 +105,4 @@ class RegistrationsController < ApplicationController
     @number2 = rand(10) + 1
     @total = @number1 + @number2
   end
-
-  def default_url
-    ENV['API_URL'].presence || "localhost:3000"
-  end
 end

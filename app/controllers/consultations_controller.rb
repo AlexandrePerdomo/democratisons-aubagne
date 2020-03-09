@@ -2,7 +2,7 @@ class ConsultationsController < ApplicationController
   before_action :check_user_signed_in, only: [:vote]
 
   def index
-    route = default_url + "/consultations"
+    route = default_url + "/api/v1/consultations"
     begin
       response = RestClient.get(route, headers={})
     rescue RestClient::ExceptionWithResponse => e
@@ -16,7 +16,7 @@ class ConsultationsController < ApplicationController
   end
 
   def show
-    route = default_url + "/consultations/#{ERB::Util.url_encode(params[:id])}"
+    route = default_url + "/api/v1/consultations/#{ERB::Util.url_encode(params[:id])}"
     begin
       response = RestClient.get(route, headers={})
     rescue RestClient::ExceptionWithResponse => e
@@ -30,7 +30,7 @@ class ConsultationsController < ApplicationController
   end
 
   def vote
-  	route = default_url + "/consultations/#{ERB::Util.url_encode(params[:id])}/vote"
+  	route = default_url + "/api/v1/consultations/#{ERB::Util.url_encode(params[:id])}/vote"
   	begin
   	  response = RestClient.get(route, headers={})
   	rescue RestClient::ExceptionWithResponse => e
