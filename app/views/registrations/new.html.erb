@@ -13,7 +13,7 @@
                     label: false, input_html: { class: "form-control", value: @user.try(:email) } %>
         <%= f.input :password, required: true, label: false, placeholder: "Mot de passe", input_html: { class: "form-control"} %>
         <%= f.check_box :accepted_condition, required: true, input_html: { class: "form-check"} %>
-        <%= f.label :accepted_condition, "J'accepte les CGU" %>
+        <%= f.label :accepted_condition, "Je reconnais avoir lu et compris les CGU et je les accepte " %>
         <%= f.hidden_field :number1, value: @number1 %>
         <%= f.hidden_field :number2, value: @number2 %>
         <%= f.input :total, label: false, placeholder: "Résultat du calcul : #{@number1} + #{@number2}", input_html: { class: "form-control"} %>
