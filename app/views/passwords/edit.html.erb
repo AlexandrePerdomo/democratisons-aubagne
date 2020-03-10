@@ -4,12 +4,19 @@
       <h1 style="text-align: center;">Mot de passe oublié</h1>
     </div>
     <div class="col-8 offset-2 center-block">
-      <%= simple_form_for (@user || :user), url: passwords_path do |f| %>
-        <%= f.input :email,
+      <%= simple_form_for (@user || :user), url: password_path do |f| %>
+        <%= f.input :reset_password_token, as: :hidden %>
+        <%= f.input :password,
+                    label: false,
+                    placeholder: "Votre nouveau mot de passe",
                     required: true,
                     autofocus: true,
+                    input_html: { class: "form-control"}
+        %>
+        <%= f.input :password_confirmation,
                     label: false,
-                    placeholder: "Email",
+                    placeholder: "Confirmer votre nouveau mot de passe",
+                    required: true,
                     input_html: { class: "form-control"}
         %>
         <%= f.button :submit, "Mettre à jour mon mot de passe", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;margin-bottom: 20px;" %>

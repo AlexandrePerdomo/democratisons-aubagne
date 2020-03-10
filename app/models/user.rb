@@ -4,8 +4,10 @@ class User
                 :last_name,
                 :email,
                 :password,
+                :password_confirmation,
                 :accepted_condition,
                 :number1,
                 :number2,
-                :total
+                :total,
+                :reset_password_token
 end

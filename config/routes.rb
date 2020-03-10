@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :confirmations, only: [:create]
   # Mot de passe oublie
   get '/mot-de-passe-oublie', to: 'passwords#new'
-  resources :passwords, only: [:create]
+  post '/mot-de-passe-oublie', to: 'passwords#create', as: 'passwords'
+  get '/modifier-mon-mot-de-passe', to: 'passwords#edit'
+  post '/modifier-mon-mot-de-passe', to: 'passwords#update', as: 'password'
   # Page de creation, post vers api, page edit, update vers api, 
   # show profil, suppression (anonymisation) du profil
   get '/inscription', to: "registrations#new"

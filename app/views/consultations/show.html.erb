@@ -10,13 +10,18 @@
   	    <h2>Description</h2>
   	    <p><%= @consultation["description"] %></p>
   	    <br>
+        <% if @consultation["propositions"].empty? %>
+          <p>Les propositions sur lesquelles vous devrez vous prononcer ne sont pas encore disponibles.</p>
+        <% else %>
+          <p>Vous pouvez trouver l'ensemble des propositions de cette consultation ci-dessous : </p>
+          <% @consultation["propositions"].each do |proposition| %>
+            <p><b><%= proposition["title"] %> : </b><%= proposition["description"] %></p>
+          <% end %>
+        <% end %>
+        <br>
   	    <% if @consultation["start_date"].to_date > Time.zone.today %>
   	      <p>Cette consultation commencera le <%= @consultation["start_date"].to_date.strftime('%d/%m/%Y') %></p>
   	    <% else %>
-  	      <p>Vous pouvez trouver l'ensemble des propositions de cette consultation ci-dessous : </p>
-  	      <% @consultation["propositions"].each do |proposition| %>
-  	      	<p><b><%= proposition["title"] %> : </b><%= proposition["description"] %></p>
-  	      <% end %>
   	      <a href="/consultations/<%= @consultation["title"].downcase.gsub(" ", "-") %>/voter" class="btn btn-primary btn-block" style="background-color: #150cbf;">Je participe à la consultation</a>
   	    <% end %>
   	  </div>
