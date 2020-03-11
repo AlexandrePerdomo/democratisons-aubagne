@@ -3,7 +3,7 @@ pre-commit:
   commands:
     js:
       glob: "*.js"
-      run: "yarn prettier --write {staged_files} && yarn eslint {staged_files} && git add {staged_files}"
+      run: "yarn prettier --write {staged_files} && yarn eslint {staged_files} --no-ignore && git add {staged_files}"
     css:
       glob: "*.{css,pcss}"
       run: "yarn prettier --write {staged_files} && yarn stylelint --fix {staged_files} && git add {staged_files}"

@@ -1,59 +1,31 @@
 <div class="container">
   <div class="row">
-  	<% if @consultation.nil? %>
-  	  <p>Une erreur est survenue, merci de contacter un administrateur.</p>
-  	<% else %>
-  	  <div class="col-12">
-  	    <h1><%= @consultation[:title] %></h1>
-  	  </div>
-  	  <div class="col-12">
-  	    <h2>Description</h2>
-  	    <p><%= @consultation[:description] %></p>
-        <br>
-
-        <% if @consultation[:start_date].to_date > Time.zone.today %>
-          <p>Cette consultation commencera le <%= @consultation[:start_date].to_date.strftime('%d/%m/%Y') %></p>
-          <% if @consultation[:propositions].empty? %>
-            <p>Les propositions sur lesquelles vous devrez vous prononcer ne sont pas encore disponibles.</p>
-          <% else %>
-            <p>Vous pouvez trouver l'ensemble des propositions de cette consultation ci-dessous : </p>
-            <% @consultation[:propositions].each do |proposition| %>
-              <p><b><%= proposition[:title] %> : </b><%= proposition[:description] %></p>
-            <% end %>
-          <% end %>
-        <% elsif @consultation[:end_date].to_date < Time.zone.today %>
-          <p>Les résultats de la consultation seront bientôt disponibles</p>
+	  <div class="col-12">
+	    <h1><%= @consultation[:title] %></h1>
+	  </div>
+	  <div class="col-12">
+	    <h2>Description</h2>
+	    <p><%= @consultation[:description] %></p>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-12">
+      <% if @consultation[:start_date].to_date > Time.zone.today %>
+        <%= render "before_start_date" %>
+      <% elsif @consultation[:end_date].to_date < Time.zone.today %>
+        <%= render "render_results" %>
+      <% else %>
+        <% if session[:token].nil? %>
+          <%= render "render_propositions" %>
+          <p>Vous devez vous <a href="/connexion">connecter</a> ou vous <a href="/inscription">inscrire</a> avant de pouvoir participer à cette consultation</p>
+        <% elsif @consultation[:voted] %>
+          <%= render "render_propositions" %>
+          <p>Vous avez déjà voté pour cette consultation. Les résultats seront disponibles le <b><%= @consultation[:end_date].to_date.strftime('%d/%m/%Y') %></b></p>
         <% else %>
-          <% if session[:token].nil? %>
-            <p>Vous pouvez trouver l'ensemble des propositions de cette consultation ci-dessous : </p>
-            <% @consultation[:propositions].each do |proposition| %>
-              <p><b><%= proposition[:title] %> : </b><%= proposition[:description] %></p>
-            <% end %>
-            <br>
-            <p>Vous devez vous <a href="/connexion">connecter</a> avant de pouvoir participer à cette consultation</p>
-          <% elsif @consultation[:voted] %>
-            <p><b>Vous avez déjà voté pour cette consultation. Les résultats seront disponibles le <%= @consultation[:end_date].to_date.strftime('%d/%m/%Y') %></b></p>
-          <% else %>
-            <% if @votes.length > 0 %>
-              <%= simple_form_for @votes, url: submit_vote_path, html: { method: :post } do |f| %>
-                <hr>
-                <% @votes.each_with_index do |vote, index| %>
-                  <div class="col-12 d-block d-md-flex justify-content-between align-items-center">
-                    <p style="margin:0;"><b><%= @consultation[:propositions][index][:title] %> : </b><%= @consultation[:propositions][index][:description] %></p>
-                    <%= f.fields_for "votes[#{index}]", vote do |pf| %>
-                      <%= pf.input :proposition_id, as: :hidden %>
-                      <%= pf.input :choice, collection: Vote::CHOICES, input_html: { class: 'form-control', style: "margin:0;width:120px;"}, required: true, label: false %>
-                    <% end %>
-                  </div>
-                  <hr>
-                <% end %>
-                <%= f.button :submit, "Voter", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;margin-bottom: 20px;" %>
-              <% end %>
-            <% end %>
-          <% end %>
+          <%= render "consultation_form" %>
         <% end %>
-  	  </div>
-  	<% end %>
+      <% end %>
+	  </div>
   </div>
 </div>
 

@@ -1,0 +1,91 @@
+<h2>Proposition retenue</h2>
+
+<p>Cette consultation a eu <b><%= @consultation[:results][0][:vote_count] %> participants</b>. La proposition retenue, avec la mention majoritaire <b><%= @consultation[:results][0][:mention] %></b>, est : <b><%= @consultation[:results][0][:title] %></b></p>
+
+<%= bar_chart @data_first, stacked: true, max: 100, suffix: "%", height: "100px", id: "first_chart", colors: ["#00B499", "#150CBF", "#00A3FF", "#FFB83E", "#F809F0", "#E50000"] %>
+
+<% if !@consultation[:analysis].nil? %>
+  <br>
+  <p><%= @consultation[:analysis]%></p>
+<% end %>
+
+<h2>Classement complet</h2>
+
+<p> Les propositions sont classées par mention majoritaire, de la meilleure à la moins bonne. Au cas où deux candidat(e)s ont la même mention majoritaire, celui ou celle qui gagne (ou perd) est celui ou celle avec le plus d'électeurs lui attribuant strictement plus (ou strictement moins) que sa mention majoritaire. Vous pouvez trouver plus d'informations sur le départage des égalités <a href="https://fr.wikipedia.org/wiki/Jugement_majoritaire " target="blank">ici</a>.</p>
+
+<% @consultation[:results].each_with_index do |result, i| %>
+  <p><b><%= i + 1 %>.</b> La proposition <b><%= result[:title] %></b> a obtenu la mention majoritaire <%= result[:mention] %>.</p>
+<% end %>
+
+<h2>Profils de mérite</h2>
+
+<div class="table-responsive percentage">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col" style="text-align: center;">Très bien</th>
+        <th scope="col" style="text-align: center;">Bien</th>
+        <th scope="col" style="text-align: center;">Assez bien</th>
+        <th scope="col" style="text-align: center;">Passable</th>
+        <th scope="col" style="text-align: center;">Insuffisant</th>
+        <th scope="col" style="text-align: center;">A rejeter</th>
+        <th scope="col" style="text-align: center;">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @consultation[:results].each do |result| %>
+        <tr>
+          <th scope="row"><%= result[:title] %></th>
+          <td style="text-align: center;"><%= (result[:very_good].to_f / result[:vote_count] * 100).round(2)  %> %</td>
+          <td style="text-align: center;"><%= (result[:good].to_f / result[:vote_count] * 100).round(2)  %> %</td>
+          <td style="text-align: center;"><%= (result[:pretty_good].to_f / result[:vote_count] * 100).round(2)  %> %</td>
+          <td style="text-align: center;"><%= (result[:passable].to_f / result[:vote_count] * 100).round(2)  %> %</td>
+          <td style="text-align: center;"><%= (result[:insufficient].to_f / result[:vote_count] * 100).round(2)  %> %</td>
+          <td style="text-align: center;"><%= (result[:reject].to_f / result[:vote_count] * 100).round(2)  %> %</td>
+          <td style="text-align: center;">100 %</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+</div>
+
+<div class="table-responsive count d-none">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col" style="text-align: center;">Très bien</th>
+        <th scope="col" style="text-align: center;">Bien</th>
+        <th scope="col" style="text-align: center;">Assez bien</th>
+        <th scope="col" style="text-align: center;">Passable</th>
+        <th scope="col" style="text-align: center;">Insuffisant</th>
+        <th scope="col" style="text-align: center;">A rejeter</th>
+        <th scope="col" style="text-align: center;">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @consultation[:results].each do |result| %>
+        <tr>
+          <th scope="row"><%= result[:title] %></th>
+          <td style="text-align: center;"><%= result[:very_good] %></td>
+          <td style="text-align: center;"><%= result[:good] %></td>
+          <td style="text-align: center;"><%= result[:pretty_good] %></td>
+          <td style="text-align: center;"><%= result[:passable] %></td>
+          <td style="text-align: center;"><%= result[:insufficient] %></td>
+          <td style="text-align: center;"><%= result[:reject] %></td>
+          <td style="text-align: center;"><%= result[:vote_count] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+</div>
+
+<p class="percentage">Vous pouvez cliquer <b style="cursor: pointer;" class="hide_percentage">ici</b> pour voir les résultats sous forme numérique</p>
+<p class="count d-none">Vous pouvez cliquer <b style="cursor: pointer;" class="hide_count">ici</b> pour voir les résultats sous forme de pourcentages</p>
+
+<h2>Histogramme</h2>
+
+<%= bar_chart @data_group, stacked: true, max: 100, suffix: "%", colors: ["#00B499", "#150CBF", "#00A3FF", "#FFB83E", "#F809F0", "#E50000"] %>
+
+<br><br><br><br>

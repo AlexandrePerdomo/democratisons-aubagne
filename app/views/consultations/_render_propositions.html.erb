@@ -1,0 +1,9 @@
+<p>Vous pouvez trouver l'ensemble des propositions de cette consultation ci-dessous : </p>
+<hr>
+<% @consultation[:propositions].each do |proposition| %>
+<div class="d-block d-md-flex justify-content-between align-items-center">
+  <p style="margin:0;"><b><%= proposition[:title] %> : </b><%= proposition[:description] %></p>
+  <p style="min-width: 140px;"></p>
+</div>
+<hr>
+<% end %>

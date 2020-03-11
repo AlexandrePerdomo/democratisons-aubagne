@@ -1,0 +1,8 @@
+<h2>Propositions</h2>
+<% if @consultation[:propositions].empty? %>
+  <p>Les propositions sur lesquelles vous devrez vous prononcer ne sont pas encore disponibles.</p>
+<% else %>
+  <%= render "render_propositions" %>
+<% end %>
+
+<p>Cette consultation commencera le <b><%= @consultation[:start_date].to_date.strftime('%d/%m/%Y') %></b> et terminera le <b> <%= @consultation[:end_date].to_date.strftime('%d/%m/%Y') %></b></p>

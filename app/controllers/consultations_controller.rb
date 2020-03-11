@@ -23,6 +23,7 @@ class ConsultationsController < ApplicationController
     @consultation[:propositions].each do |proposition|
       @votes << Vote.new(proposition_id: proposition[:id])
     end
+    generate_data_results
   end
 
   def submit_vote
@@ -71,4 +72,60 @@ class ConsultationsController < ApplicationController
     end
     sanitized_params
   end
+
+  def generate_data_results
+    @data_group = [
+      {
+        name: "Très bien", 
+        data: @consultation[:results].map { |result| [result[:title], (result[:very_good].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Bien", 
+        data: @consultation[:results].map { |result| [result[:title], (result[:good].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Assez bien", 
+        data: @consultation[:results].map { |result| [result[:title], (result[:pretty_good].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Passable", 
+        data: @consultation[:results].map { |result| [result[:title], (result[:passable].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Insuffisant", 
+        data: @consultation[:results].map { |result| [result[:title], (result[:insufficient].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "A rejeter", 
+        data: @consultation[:results].map { |result| [result[:title], (result[:reject].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+    ]
+    @data_first = [
+      {
+        name: "Très bien", 
+        data: @consultation[:results][0,1].map { |result| [result[:title], (result[:very_good].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Bien", 
+        data: @consultation[:results][0,1].map { |result| [result[:title], (result[:good].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Assez bien", 
+        data: @consultation[:results][0,1].map { |result| [result[:title], (result[:pretty_good].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Passable", 
+        data: @consultation[:results][0,1].map { |result| [result[:title], (result[:passable].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "Insuffisant", 
+        data: @consultation[:results][0,1].map { |result| [result[:title], (result[:insufficient].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+      {
+        name: "A rejeter", 
+        data: @consultation[:results][0,1].map { |result| [result[:title], (result[:reject].to_f / result[:vote_count].to_f * 100).round(2)]}
+      },
+    ]
+  end
+
 end
