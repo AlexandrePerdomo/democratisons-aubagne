@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   get '/deconnexion', to: "sessions#destroy"
 
   resources :consultations, only: [:index, :show]
-  get '/consultations/:id/voter', to: 'consultations#vote'
+  post '/consultations/:id', to: 'consultations#submit_vote', as: "submit_vote"
 end
