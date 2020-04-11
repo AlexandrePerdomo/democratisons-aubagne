@@ -9,5 +9,6 @@ class User
                 :number1,
                 :number2,
                 :total,
-                :reset_password_token
+                :reset_password_token,
+                :structure_id
 end

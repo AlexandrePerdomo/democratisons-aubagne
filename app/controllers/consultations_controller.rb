@@ -4,7 +4,7 @@ class ConsultationsController < ApplicationController
   def index
     uri = default_url + "/api/v1/consultations"
     begin
-      response = RestClient.get(uri, headers={})
+      response = requete_api(uri)
     rescue RestClient::ExceptionWithResponse => e
       e.response
     end

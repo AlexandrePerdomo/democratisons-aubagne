@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Structures</h1>
+    </div>
+    <div class="col-12">
+      <h2>Le principe</h2>
+      <p>
+      	Nous souhaitons permettre aux différentes structures de la ville (associations, commerçants, comités de quartier, organisation politiques...) d'informer les habitants de leurs évènements et leur proposer d'organiser des consultations. 
+      </p>
+    </div>
+    <div class="col-12">
+      <h2>Les structures</h2>
+      <% if @structures.blank? || @structures.nil? %>
+        <p>Il n'y a pas de structures actuellement.</p>
+      <% else %>
+        <% @structures.each do |structures| %>
+          <div class="d-flex justify-content-between" style="margin-top: 15px;">
+            <p><b><a href="/structures/<%= structures["name"].downcase.gsub(" ", "-") %>" style="font-size: 20px"><%= structures["name"] %></a>          
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

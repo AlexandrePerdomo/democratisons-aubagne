@@ -4,7 +4,12 @@
     <hr>
     <% @votes.each_with_index do |vote, index| %>
       <div class="d-block d-md-flex justify-content-between align-items-center">
-        <p style="margin:0;"><b><%= @consultation[:propositions][index][:title] %> : </b><%= @consultation[:propositions][index][:description] %></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <% if @consultation[:propositions][index][:picture_url].present? %>
+            <img data-enlargable width="100" height="100" style="cursor:zoom-in; margin-right: 10px;" src="<%= @consultation[:propositions][index][:picture_url]%>" />
+          <% end %>
+          <p style="margin:0;"><b><%= @consultation[:propositions][index][:title] %> : </b><%= @consultation[:propositions][index][:description] %></p>
+        </div>
         <%= f.fields_for "votes[#{index}]", vote do |pf| %>
           <%= pf.input :proposition_id, as: :hidden %>
           <%= pf.input :choice, collection: Vote::CHOICES, input_html: { class: 'form-control', style: "margin:0;width:120px;margin-left:20px;"}, required: true, label: false %>

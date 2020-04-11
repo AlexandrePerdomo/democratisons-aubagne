@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   def check_user_signed_in
     if session[:token].nil?
+      session[:previous_path] = request.fullpath
       redirect_to "/connexion", notice: "Vous devez vous connecter pour effectuer cette action."
     end
   end

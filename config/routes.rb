@@ -26,7 +26,12 @@ Rails.application.routes.draw do
   get '/connexion', to: "sessions#new"
   post '/connexion', to: "sessions#create", as: "sessions"
   get '/deconnexion', to: "sessions#destroy"
+  # Gestion des invitations
+  get '/invitation', to: "invitations#new"
+  post '/invitation', to: "invitations#create", as: "invitations"
 
   resources :consultations, only: [:index, :show]
+  resources :structures, only: [:index, :show]
+  post '/structures/:id', to: 'structures#invitation', as: "structure_invitation"
   post '/consultations/:id', to: 'consultations#submit_vote', as: "submit_vote"
 end

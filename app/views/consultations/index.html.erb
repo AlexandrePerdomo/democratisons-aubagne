@@ -11,6 +11,10 @@
       <p>
       	Mais plutôt qu'un choix unique, chaque Aubagnais·e·s devra s'exprimer sur l'ensemble des propositions en lui attribuant une mention : c'est le principe du <a href="https://mieuxvoter.fr" target="blank">jugement majoritaire</a>. Les mentions possibles sont les suivantes : <b>Très bien, Bien, Assez bien, Passable, Insuffisant, A Rejeter</b>. Une fois l'ensemble des mentions attribuées, le résultat de la consultation est obtenu en regardant quelle est la mention majoritaire. 
       </p>
+      <% if session[:token].nil? %>
+        <p>Connectez vous pour accéder à l'ensemble des consultations disponibles.</p>  
+      <% end %>
+      
     </div>
     <div class="col-12">
       <h2>Les consultations en cours</h2>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+	  <div class="col-12">
+	    <h1><%= @structure[:title] %></h1>
+	  </div>
+	  <div class="col-12">
+	    <h2>Description</h2>
+	    <p><%= @structure[:description] %></p>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-12">
+      	<p>Inviter des gens dans la structure</p>
+      	<%= simple_form_for @user, url: structure_invitation_path, class: "form-group" do |f|  %>
+      	  <%= f.input :email, required: true, placeholder:"Email",
+      	              label: false, 
+      	              input_html: { class: "form-control", value: @user.try(:email) } 
+      	  %>
+      	  <%= f.hidden_field :structure_id, value: @structure[:id] %>
+      	  <%= f.button :submit, "Inviter un nouveau membre", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;" %>
+      	<% end %>
+
+
+	  </div>
+  </div>
+</div>
+

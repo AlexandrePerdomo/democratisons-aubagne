@@ -2,7 +2,12 @@
 <hr>
 <% @consultation[:propositions].each do |proposition| %>
 <div class="d-block d-md-flex justify-content-between align-items-center">
-  <p style="margin:0;"><b><%= proposition[:title] %> : </b><%= proposition[:description] %></p>
+  <div class="d-flex justify-content-between align-items-center">
+    <% if proposition[:picture_url].present? %>
+      <img data-enlargable width="100" height="100" style="cursor:zoom-in;margin-right: 10px;" src="<%= proposition[:picture_url]%>" />
+    <% end %>
+    <p style="margin:0;"><b><%= proposition[:title] %> : </b><%= proposition[:description] %></p>
+  </div>
   <p style="min-width: 140px;"></p>
 </div>
 <hr>

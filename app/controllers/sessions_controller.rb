@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    session[:previous_path] = request.referer if session[:previous_path].nil?
     @user = User.new
   end
 
@@ -14,7 +15,8 @@ class SessionsController < ApplicationController
     if retour_api[:token]
       session[:token] = retour_api[:token]
       flash[:notice] = "Connecté(e) avec succès."
-      redirect_to root_path
+      redirect_to session[:previous_path] || root_path
+      session[:previous_path] = nil
     else
       @user = User.new({ "email": params[:user][:email] })
       flash[:alert] = retour_api[:error]
