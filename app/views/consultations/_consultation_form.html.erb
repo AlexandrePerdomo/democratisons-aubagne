@@ -6,9 +6,9 @@
       <div class="d-block d-md-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-between align-items-center">
           <% if @consultation[:propositions][index][:picture_url].present? %>
-            <img data-enlargable width="100" height="100" style="cursor:zoom-in; margin-right: 10px;" src="<%= @consultation[:propositions][index][:picture_url]%>" />
+            <img data-enlargable width="100" height="100" style="cursor:zoom-in; margin-right: 10px;" src="<%= @consultation[:propositions][index][:picture_url]%>" class="proposition_img" />
           <% end %>
-          <p style="margin:0;"><b><%= @consultation[:propositions][index][:title] %> : </b><%= @consultation[:propositions][index][:description].gsub(/\n/, '<br/>') %></p>
+          <p style="margin:0;"><b><%= @consultation[:propositions][index][:title] %> : </b><%= @consultation[:propositions][index][:description].gsub(/\n/, '<br/>').html_safe %></p>
         </div>
         <%= f.fields_for "votes[#{index}]", vote do |pf| %>
           <%= pf.input :proposition_id, as: :hidden %>

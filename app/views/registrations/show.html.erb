@@ -4,12 +4,21 @@
       <h1>Mon compte</h1>
     </div>
     <div class="col-12">
+      <h2>Mes informations</h2>
       <p>Prénom : <%= @user.first_name %></p>
       <p>Nom : <%= @user.last_name %></p>
       <p>Email : <%= @user.email %></p>
     </div>
     <div class="col-12">
-      <!-- <a href="/modifier-mon-compte">Modifier mon compte</a> -->
+<!--       <h2>Inviter une connaissance sur la plateforme</h2>
+      <%= simple_form_for @invited_user, url: city_invitation_path, class: "form-group" do |f|  %>
+        <%= f.input :email, required: true, placeholder:"Email",
+                    label: false, 
+                    input_html: { class: "form-control", value: @invited_user.try(:email) } 
+        %>
+        <%= f.hidden_field :city_id, value: @city_id %>
+        <%= f.button :submit, "Inviter un nouveau membre", class: 'btn btn-primary btn-block', style: "background-color: #150cbf;" %>
+      <% end %> -->
       <br>
       <a href="/deconnexion">Déconnexion</a>
       <br><br><br>

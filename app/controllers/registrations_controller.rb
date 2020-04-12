@@ -38,6 +38,8 @@ class RegistrationsController < ApplicationController
       last_name: retour_api[:last_name],
       email: retour_api[:email],
     )
+    @city_id = retour_api[:city_id]
+    @invited_user = User.new(email: "")
   end
 
   # def update

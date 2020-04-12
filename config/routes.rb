@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   resources :consultations, only: [:index, :show]
   resources :structures, only: [:index, :show]
   post '/structures/:id', to: 'structures#invitation', as: "structure_invitation"
+  post '/mon-compte', to: 'structures#invitation', as: "city_invitation"
   post '/consultations/:id', to: 'consultations#submit_vote', as: "submit_vote"
 end

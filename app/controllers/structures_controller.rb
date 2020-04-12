@@ -24,7 +24,7 @@ class StructuresController < ApplicationController
 
   def invitation
     uri = default_url + "/users/invitation"
-    datas = {user: {email: params[:user][:email], structure_id: params[:user][:structure_id]}}
+    datas = {user: {email: params[:user][:email], structure_id: params[:user][:structure_id], city_id: params[:user][:city_id]}}
     response = requete_api(uri, datas, 'post')
     retour_api = JSON.parse(response, :symbolize_names => true)
     if retour_api[:succes]

@@ -4,9 +4,9 @@
 <div class="d-block d-md-flex justify-content-between align-items-center">
   <div class="d-flex justify-content-between align-items-center">
     <% if proposition[:picture_url].present? %>
-      <img data-enlargable width="100" height="100" style="cursor:zoom-in;margin-right: 10px;" src="<%= proposition[:picture_url]%>" />
+      <img data-enlargable width="100" height="100" style="cursor:zoom-in;margin-right: 10px;" src="<%= proposition[:picture_url]%>" class="proposition_img" />
     <% end %>
-    <p style="margin:0;"><b><%= proposition[:title] %> : </b><%= proposition[:description].gsub(/\n/, '<br/>') %></p>
+    <p style="margin:0;"><b><%= proposition[:title] %> : </b><%= proposition[:description].gsub(/\n/, '<br/>').html_safe  %></p>
   </div>
   <p style="min-width: 140px;"></p>
 </div>
